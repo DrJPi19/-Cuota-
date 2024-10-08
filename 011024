@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Hipoteca {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Introduce el importe de la hipoteca: ");
+        double importe = scanner.nextDouble();
+        
+        System.out.print("Introduce el tipo de interés anual (en %): ");
+        double tipoInteres = scanner.nextDouble();
+        
+        System.out.print("Introduce tu edad: ");
+        int edad = scanner.nextInt();
+        
+        // Cálculo del plazo
+        int plazo = Math.abs(75 - edad); // Calcula la diferencia entre 75 y la edad
+        
+        // Conversión del tipo de interés anual a mensual
+        double interesMensual = (tipoInteres / 100) / 12;
+        
+        int meses = plazo * 12;
+  
+        double cuota = (importe * interesMensual * Math.pow(1 + interesMensual, meses)) / 
+                       (Math.pow(1 + interesMensual, meses) - 1);
+        
+        System.out.printf("La cuota mensual de la hipoteca es: %.2f euros%n", cuota);
+        
+        scanner.close();
+    }
+}
